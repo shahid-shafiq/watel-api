@@ -18,11 +18,13 @@ class CreateBillsTable extends Migration
             $table->integer('no');
             $table->decimal('date');
             $table->foreignid('client_id');
+            $table->foreignid('invoice_id')->nullable();
             $table->integer('count');
             $table->decimal('cost');
             $table->decimal('discount');
             $table->decimal('amount');
             $table->enum('payment', ['cash', 'credit']);
+            $table->enum('status', ['paid', 'unpaid']);
             $table->timestamps();
         });
     }

@@ -15,9 +15,11 @@ class CreateDeliveryTable extends Migration
     {
         Schema::create('delivery', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
             $table->foreignId('client_id');
             $table->foreignId('dispatch_id');
             $table->integer('count');
+            $table->enum('status', 'loaded','delivered','cleared');
             $table->timestamps();
         });
     }

@@ -20,3 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('vans', 'VanController');
 Route::resource('clients', 'ClientController');
+Route::resource('bills', 'BillController');
+Route::resource('delivery', 'DeliveryController');
+
+Route::resource('dispatch', 'DispatchController');
+Route::resource('invoices', 'InvoiceController');
+Route::resource('inventory', 'InventoryController');

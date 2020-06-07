@@ -21,8 +21,8 @@ class ClientController extends Controller
     }
 
     public function store(Request $request) {
-        $van = new Client($request->all());
-        $van->save();
+        $client = new Client($request->all());
+        $client->save();
         return response()->json([
             "message" => "Client added successfully"
         ], 200);
@@ -66,5 +66,4 @@ class ClientController extends Controller
             ], 404);
         }
     }
-
 }

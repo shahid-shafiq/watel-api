@@ -16,13 +16,15 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->string('invoicecode');
-            $table->decimal('date');
+            $table->datetime('date');
             $table->date('month');
             $table->integer('no');
             $table->foreignId('client_id');
             $table->foreignId('bill_id');
             $table->decimal('count');
             $table->decimal('amount');
+            $table->date('duedate');
+            $table->enum('status', ['due', 'paid']);
             $table->timestamps();
         });
     }
