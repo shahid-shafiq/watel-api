@@ -8,12 +8,12 @@ use App\Dispatch;
 class DispatchController extends Controller
 {
   public function index() {
-    return Dispatch::get();
+    return Dispatch::with('van')->get();
   }
 
   public function show($id) {
       if (Dispatch::where('id', $id)->exists()) {
-          return Dispatch::find($id);
+          return Dispatch::with(['van', 'delivery.client'])->find($id);
       } else {
           return response()->json([
               "message" => "Dispatch not found"
@@ -25,7 +25,8 @@ class DispatchController extends Controller
       $data = new Dispatch($request->all());
       $data->save();
       return response()->json([
-          "message" => "Dispatch added successfully"
+          "message" => "Dispatch added successfully",
+          "dispatch_id" => $data->id
       ], 200);
   }
 

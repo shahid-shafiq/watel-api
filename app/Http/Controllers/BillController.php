@@ -8,12 +8,12 @@ use App\Bill;
 class BillController extends Controller
 {
   public function index() {
-    return Bill::get();
+    return Bill::with('client.area.city')->get();
   }
 
   public function show($id) {
       if (Bill::where('id', $id)->exists()) {
-          return Bill::find($id);
+          return Bill::with('delivery.client.area.city')->find($id);
       } else {
           return response()->json([
               "message" => "Bill not found"
@@ -25,7 +25,8 @@ class BillController extends Controller
       $bill = new Bill($request->all());
       $bill->save();
       return response()->json([
-          "message" => "Bill added successfully"
+          "message" => "Bill added successfully",
+          "bill_id" => $bill->id
       ], 200);
   }
 

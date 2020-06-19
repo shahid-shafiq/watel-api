@@ -25,7 +25,8 @@ class InventoryController extends Controller
       $data = new Inventory($request->all());
       $data->save();
       return response()->json([
-          "message" => "Inventory entry added successfully"
+          "message" => "Inventory entry added successfully",
+          "inventory_id" => $data->id 
       ], 200);
   }
 

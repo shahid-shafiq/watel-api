@@ -8,12 +8,12 @@ use App\Invoice;
 class InvoiceController extends Controller
 {
   public function index() {
-    return Invoice::get();
+    return Invoice::with(['client', 'bills'])->get();
   }
 
   public function show($id) {
       if (Invoice::where('id', $id)->exists()) {
-          return Invoice::find($id);
+          return Invoice::with(['client', 'bills'])->find($id);
       } else {
           return response()->json([
               "message" => "Invoice not found"
@@ -25,7 +25,8 @@ class InvoiceController extends Controller
       $data = new Invoice($request->all());
       $data->save();
       return response()->json([
-          "message" => "Invoice added successfully"
+          "message" => "Invoice added successfully",
+          "invoice_id" => $data->id
       ], 200);
   }
 

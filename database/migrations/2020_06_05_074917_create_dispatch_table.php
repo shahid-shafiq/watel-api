@@ -20,6 +20,7 @@ class CreateDispatchTable extends Migration
             $table->foreignId('van_id');
             $table->integer('count');
             $table->decimal('worth');
+            $table->enum('status', ['active', 'complete']);
             $table->timestamps();
         });
     }

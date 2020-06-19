@@ -26,7 +26,8 @@ class VanController extends Controller
         $van = new Van($request->all());
         $van->save();
         return response()->json([
-            "message" => "Van added successfully"
+            "message" => "Van added successfully",
+            "van_id" => $van->id
         ], 200);
     }
 

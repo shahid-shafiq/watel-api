@@ -17,7 +17,7 @@ class CreateBillsTable extends Migration
             $table->id();
             $table->integer('no');
             $table->decimal('date');
-            $table->foreignid('client_id');
+            $table->foreignid('delivery_id');
             $table->foreignid('invoice_id')->nullable();
             $table->integer('count');
             $table->decimal('cost');

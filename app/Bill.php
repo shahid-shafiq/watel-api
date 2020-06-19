@@ -12,6 +12,15 @@ class Bill extends Model
      * @var array
      */
     protected $fillable = [
-        'no', 'date', 'client_id', 'count', 'cost', 'discount', 'amount', 'payment'
+        'no', 'date', 'delivery_id', 'count', 'cost', 
+        'discount', 'amount', 'payment', 'status'
     ];
+
+    public function Invoice() {
+      return $this->belongsTo('App\Invoice');
+    }
+
+    public function delivery() {
+      return $this->belongsTo('App\Delivery');
+    }
 }

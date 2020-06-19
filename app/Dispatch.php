@@ -13,6 +13,15 @@ class Dispatch extends Model
      * @var array
      */
     protected $fillable = [
-        'dispatchcode', 'date', 'van_id', 'count', 'worth',
+        'dispatchcode', 'date', 'van_id', 'count',
+        'worth', 'status'
     ];
+
+    public function van() {
+      return $this->belongsTo('App\Van');
+    }
+
+    public function delivery() {
+      return $this->hasMany('App\Delivery');
+    }
 }

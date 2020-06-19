@@ -15,4 +15,12 @@ class Invoice extends Model
         'invoicecode', 'date', 'month', 'no', 
         'client_id', 'bill_id', 'count', 'amount'
     ];
+
+    public function bills() {
+      return $this->hasMany('App\Bill');
+    }
+
+    public function client() {
+      return $this->belongsTo('App\Client');
+    }
 }

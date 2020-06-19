@@ -7,12 +7,12 @@ use App\Client;
 class ClientController extends Controller
 {
     public function index() {
-        return Client::get();
+        return Client::with('area.city')->get();
     }
 
     public function show($id) {
         if (Client::where('id', $id)->exists()) {
-            return Client::find($id);
+            return Client::with('area.city')->find($id);
         } else {
             return response()->json([
                 "message" => "Client not found"
@@ -24,7 +24,8 @@ class ClientController extends Controller
         $client = new Client($request->all());
         $client->save();
         return response()->json([
-            "message" => "Client added successfully"
+            "message" => "Client added successfully",
+            "client_id" => $client->id
         ], 200);
     }
 
